@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Troubleshooting Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+        textarea, input {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .log {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Troubleshooting Tracker</h1>
+        <form id="logForm">
+            <label for="problem">Describe the Problem:</label>
+            <textarea id="problem" rows="3" required></textarea>
+
+            <label for="symptoms">Symptoms (Error messages, unexpected behavior, etc.):</label>
+            <textarea id="symptoms" rows="3"></textarea>
+
+            <label for="what_didnt_work">What Didn’t Work:</label>
+            <textarea id="what_didnt_work" rows="3"></textarea>
+
+            <label for="what_worked">What Worked (Final solution):</label>
+            <textarea id="what_worked" rows="3"></textarea>
+
+            <label for="resources">Resources (Links, articles, docs):</label>
+            <textarea id="resources" rows="3"></textarea>
+
+            <button type="submit">Save Log</button>
+        </form>
+
+        <h2>Past Logs</h2>
+        <div id="logs"></div>
+    </div>
+
+    <script>
+        async function fetchLogs() {
+            const response = await fetch("/logs");
+            const logs = await response.json();
+
+            const logsContainer = document.getElementById("logs");
+            logsContainer.innerHTML = "";
+            logs.forEach(log => {
+                const logDiv = document.createElement("div");
+                logDiv.classList.add("log");
+                logDiv.innerHTML = `
+                    <strong>${log.timestamp}</strong>
+                    <p><strong>Problem:</strong> ${log.problem}</p>
+                    <p><strong>Symptoms:</strong> ${log.symptoms}</p>
+                    <p><strong>What Didn’t Work:</strong> ${log.what_didnt_work}</p>
+                    <p><strong>What Worked:</strong> ${log.what_worked}</p>
+                    <p><strong>Resources:</strong> ${log.resources}</p>
+                `;
+                logsContainer.appendChild(logDiv);
+            });
+        }
+
+        document.getElementById("logForm").addEventListener("submit", async (event) => {
+            event.preventDefault();
+            const problem = document.getElementById("problem").value;
+            const symptoms = document.getElementById("symptoms").value;
+            const what_didnt_work = document.getElementById("what_didnt_work").value;
+            const what_worked = document.getElementById("what_worked").value;
+            const resources = document.getElementById("resources").value;
+
+            const response = await fetch("/save_log", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ problem, symptoms, what_didnt_work, what_worked, resources })
+            });
+
+            if (response.ok) {
+                alert("Log saved successfully!");
+                document.getElementById("logForm").reset();
+                fetchLogs();
+            } else {
+                alert("Failed to save log.");
+            }
+        });
+
+        // Load logs on page load
+        fetchLogs();
+    </script>
+</body>
+</html>
+
