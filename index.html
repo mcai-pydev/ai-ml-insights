@@ -113,6 +113,46 @@
         #features {
             margin-top: 4rem;
             padding-top: 4rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .feature-card {
+            padding: 1.5rem;
+            border-radius: 8px;
+            background: #f8f9fa;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card h3 {
+            color: #2d3436;
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .feature-card p {
+            color: #636e72;
+            font-size: 1rem;
+            margin-bottom: 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #2d3436;
+            font-size: 2rem;
         }
     </style>
 </head>
@@ -130,10 +170,38 @@
             </a>
             <a href="#features" class="button explore-button">Explore Features</a>
         </div>
-        <img src="logo.png" alt="AI-ML-Insights" class="logo">
+        <img src="logo.svg" alt="AI-ML-Insights" class="logo">
     </div>
-    <div id="features">
-        <!-- Features section will be added here -->
+    <div class="container">
+        <div id="features">
+            <h2 class="section-title">Key Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Machine Learning Models</h3>
+                    <p>Explore and implement various machine learning algorithms, from basic regression to advanced neural networks.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Data Processing</h3>
+                    <p>Comprehensive tools and techniques for data cleaning, preprocessing, and feature engineering.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Deep Learning</h3>
+                    <p>Implementation of deep learning architectures using popular frameworks like TensorFlow and PyTorch.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Natural Language Processing</h3>
+                    <p>Tools and models for text analysis, sentiment analysis, and language understanding tasks.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Computer Vision</h3>
+                    <p>Image processing and computer vision algorithms for object detection and image classification.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Model Deployment</h3>
+                    <p>Guidelines and tools for deploying machine learning models in production environments.</p>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html> 
