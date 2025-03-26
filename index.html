@@ -3,16 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI-ML-Insights - Advanced AI & Machine Learning Solutions</title>
+    <title>AI-ML-Insights</title>
     <style>
-        :root {
-            --primary-color: #2d3436;
-            --secondary-color: #0984e3;
-            --accent-color: #00b894;
-            --text-color: #2d3436;
-            --light-bg: #f5f6fa;
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -22,144 +14,117 @@
 
         body {
             line-height: 1.6;
-            color: var(--text-color);
-        }
-
-        .hero {
+            background: #f5f5f5;
+            color: #333;
             min-height: 100vh;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             display: flex;
-            align-items: center;
-            justify-content: center;
+            flex-direction: column;
             padding: 2rem;
-            position: relative;
-            overflow: hidden;
         }
 
-        .hero-content {
-            text-align: center;
-            color: white;
-            z-index: 1;
-            max-width: 800px;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
         }
 
-        .hero h1 {
+        h1 {
             font-size: 3.5rem;
-            margin-bottom: 1rem;
-            animation: fadeInUp 1s ease;
+            color: #2d3436;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
         }
 
-        .hero p {
-            font-size: 1.2rem;
+        p {
+            font-size: 1.25rem;
+            color: #636e72;
+            max-width: 800px;
             margin-bottom: 2rem;
-            opacity: 0.9;
-            animation: fadeInUp 1s ease 0.2s;
-            animation-fill-mode: both;
+            line-height: 1.8;
         }
 
-        .cta-button {
+        .buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .button {
             display: inline-block;
-            padding: 1rem 2rem;
-            background: var(--accent-color);
-            color: white;
+            padding: 0.8rem 1.5rem;
             text-decoration: none;
             border-radius: 5px;
-            font-weight: bold;
-            transition: transform 0.3s ease;
-            animation: fadeInUp 1s ease 0.4s;
-            animation-fill-mode: both;
+            font-weight: 500;
+            transition: all 0.3s ease;
         }
 
-        .cta-button:hover {
-            transform: translateY(-3px);
+        .github-button {
+            background: #0366d6;
+            color: white;
         }
 
-        .neural-network {
-            position: absolute;
+        .explore-button {
+            background: white;
+            color: #2d3436;
+            border: 1px solid #dfe6e9;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            max-width: 200px;
+            margin-left: auto;
+            opacity: 0.8;
+        }
+
+        .content-wrapper {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+        }
+
+        .main-content {
+            flex: 1;
+        }
+
+        .background-pattern {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            opacity: 0.1;
-            z-index: 0;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* SVG Animations */
-        .network-node {
-            animation: pulse 2s infinite;
-        }
-
-        .network-connection {
-            animation: flow 3s infinite linear;
-        }
-
-        .background-circle {
-            animation: rotate 30s infinite linear;
-        }
-
-        .neural-network:hover {
-            filter: drop-shadow(0 0 10px rgba(0, 184, 148, 0.3));
-            transition: filter 0.3s ease;
-        }
-
-        @keyframes pulse {
-            0% { r: 5; fill-opacity: 0.8; }
-            50% { r: 4; fill-opacity: 0.6; }
-            100% { r: 5; fill-opacity: 0.8; }
-        }
-
-        @keyframes flow {
-            0% { stroke-dashoffset: 1000; }
-            100% { stroke-dashoffset: 0; }
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        @keyframes glow {
-            0% { filter: drop-shadow(0 0 5px rgba(0, 184, 148, 0.3)); }
-            50% { filter: drop-shadow(0 0 15px rgba(0, 184, 148, 0.5)); }
-            100% { filter: drop-shadow(0 0 5px rgba(0, 184, 148, 0.3)); }
+            background: repeating-linear-gradient(
+                45deg,
+                #f5f6fa 0px,
+                #f5f6fa 1px,
+                transparent 1px,
+                transparent 10px
+            );
+            opacity: 0.5;
+            z-index: -1;
         }
     </style>
 </head>
 <body>
-    <div class="hero">
-        <svg class="neural-network" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
-            <!-- Background Circle -->
-            <circle class="background-circle" cx="500" cy="500" r="450" fill="none" stroke="white" stroke-width="2" opacity="0.1"/>
-            
-            <!-- Network Nodes -->
-            <circle class="network-node" cx="500" cy="500" r="5" fill="white" style="animation-delay: 0s"/>
-            <circle class="network-node" cx="300" cy="300" r="5" fill="white" style="animation-delay: 0.2s"/>
-            <circle class="network-node" cx="700" cy="300" r="5" fill="white" style="animation-delay: 0.4s"/>
-            <circle class="network-node" cx="300" cy="700" r="5" fill="white" style="animation-delay: 0.6s"/>
-            <circle class="network-node" cx="700" cy="700" r="5" fill="white" style="animation-delay: 0.8s"/>
-            
-            <!-- Network Connections -->
-            <line class="network-connection" x1="500" y1="500" x2="300" y2="300" stroke="white" stroke-width="2" style="stroke-dasharray: 1000; animation-delay: 0s"/>
-            <line class="network-connection" x1="500" y1="500" x2="700" y2="300" stroke="white" stroke-width="2" style="stroke-dasharray: 1000; animation-delay: 0.2s"/>
-            <line class="network-connection" x1="500" y1="500" x2="300" y2="700" stroke="white" stroke-width="2" style="stroke-dasharray: 1000; animation-delay: 0.4s"/>
-            <line class="network-connection" x1="500" y1="500" x2="700" y2="700" stroke="white" stroke-width="2" style="stroke-dasharray: 1000; animation-delay: 0.6s"/>
-        </svg>
-        
-        <div class="hero-content">
-            <h1>AI-ML-Insights</h1>
-            <p>Advanced AI & Machine Learning Solutions for Modern Businesses</p>
-            <a href="#features" class="cta-button">Explore Features</a>
+    <div class="background-pattern"></div>
+    <div class="container">
+        <div class="content-wrapper">
+            <div class="main-content">
+                <h1>AI-ML-Insights</h1>
+                <p>Your one-stop repository for diving deep into the fascinating world of Artificial Intelligence, Machine Learning, and Data Science.</p>
+                <div class="buttons">
+                    <a href="https://github.com/mcai-pydev/ai-ml-insights" class="button github-button">
+                        <svg height="16" viewBox="0 0 16 16" width="16" style="vertical-align: text-bottom; margin-right: 8px; fill: currentColor;">
+                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                        </svg>
+                        View on GitHub
+                    </a>
+                    <a href="#features" class="button explore-button">Explore Features</a>
+                </div>
+            </div>
+            <img src="logo.png" alt="AI-ML-Insights" class="logo">
         </div>
     </div>
 </body>
